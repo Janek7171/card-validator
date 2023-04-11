@@ -39,10 +39,11 @@ const verifyStartingDigits = (numberStrArray) => {
 
 const checkCardNumber = (number) => {
   const numberStrArray = [...number.toString()];
-  const result = verifyStartingDigits(numberStrArray);
+  let result = verifyStartingDigits(numberStrArray);
   const invalidCard = 'Nieprawidłowy';
   if (!result) {
-    return invalidCard;
+    result = invalidCard;
+    return result;
   }
 
   const reversedNumberStrArray = numberStrArray.reverse();
@@ -78,11 +79,10 @@ const checkCardNumber = (number) => {
   const sum1 = sumArray(doubledOddIndexNumbers);
   const sum2 = sumArray(evenIndexNumbers);
   const finalSum = sum1 + sum2;
-  if (finalSum % 10 === 0) {
-    return result;
-  } else {
-    return invalidCard;
+  if (finalSum % 10 !== 0) {
+    result = invalidCard;
   }
+  return result;
 };
 
 export default checkCardNumber;
